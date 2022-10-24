@@ -28,12 +28,37 @@ export class HELPER {
         return combat.started && changed.round === 1;
     }
     
-    static firstGM(){
+    static firstGM() {
         return game.users.find(u => u.isGM && u.active);
     }
     
-    static isFirstGM(){
+    static isFirstGM() {
         return game.user.id === HELPER.firstGM()?.id;
+    }
+
+    static sanitizeTokenName(moduleName, token, feature, label, capitalize = true){
+        const name = ((HELPER.setting(moduleName, feature) && token.actor.type === "npc") ? HELPER.format(label) : token.name)
+        return capitalize ? name.capitalize() : name;
+    }
+
+    static async wait(ms) {
+        return new Promise((resolve)=> setTimeout(resolve, ms))
+    }
+    
+    static async waitFor(fn, m = 200, w = 100, i = 0){
+        while(!fn(i, ((i*w)/100)) && i < m) {
+            i++;
+            await HELPER.wait(w);
+        }
+
+        return i === m ? false : true;
+    }
+
+    static stringToDom(innerHTML, className){
+        let dom = document.createElement("div");
+        dom.innerHTML = innerHTML;
+        dom.className = className;
+        return dom;
     }
 
     /*
