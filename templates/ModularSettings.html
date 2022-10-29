@@ -56,6 +56,7 @@
     <section id="config-tabs" class="content athenaeum-tab-pad">
       {{#each data.tabs as |data tab|}}
       <div class="tab" data-tab="{{tab}}" data-group="sections">
+            <div class="tab-hint">{{ localize data.hint }}</div>
             <div class="settings-list">
               {{#each data.settings}}
                 {{> settingPartial}} 
@@ -73,9 +74,9 @@
         <button type="submit" name="submit">
             <i class="far fa-save"></i> {{localize 'SETTINGS.Save'}}
         </button>
-        <button type="button" name="reset">
+        <!-- <button type="button" name="reset">
             <i class="fas fa-undo"></i> {{localize 'SETTINGS.Reset'}}
-        </button>
+        </button> -->
     </footer>
 </form>
 
