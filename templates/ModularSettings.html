@@ -1,8 +1,8 @@
 {{#*inline "settingPartial"}}
+{{#if this.isCustom}}
+{{> (lookup this "customPartial") this}}
+{{else}}
 <div class="form-group">
-    {{#if this.isCustom}}
-    {{> (lookup this "customPartial") this}}
-    {{else}}
     <label>{{this.name}}</label>
     <div class="form-fields">
 
@@ -33,8 +33,8 @@
     </div>
 
     <p class="notes">{{this.hint}}</p>
-    {{/if}}
 </div>
+{{/if}}
 {{/inline}}
 
 {{#*inline "menuPartial" }}
