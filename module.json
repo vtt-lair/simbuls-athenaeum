@@ -17,26 +17,7 @@
     "manifest": "https://github.com/vtt-lair/simbuls-athenaeum/releases/latest/download/module.json",
     "download": "https://github.com/vtt-lair/simbuls-athenaeum/releases/download/v1.0.0/module.zip",
     "changelog": "https://github.com/vtt-lair/simbuls-athenaeum/blob/main/CHANGELOG.md",
-    "relationships": {
-        "systems": [
-            {
-                "id": "dnd5e",
-                "type": "system",
-                "manifest": "https://gitlab.com/asacolips-projects/foundry-mods/archmage/-/raw/2.0.2/system.json",
-                "compatibility": {
-                    "verified": "2.0.2"
-                }
-            },
-            {
-              "id": "sw5e",
-              "type": "system",
-              "manifest": "https://github.com/unrealkakeman89/sw5e/releases/download/2.0.3.2.3.7/system.json",
-              "compatibility": {
-                "verified": "2.0.3.2.3.7"
-              }
-            }
-        ]
-    },
+    "relationships": {},
     "compatibility": {
         "minimum": "10",
         "verified": "10"
