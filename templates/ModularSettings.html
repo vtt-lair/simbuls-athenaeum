@@ -1,4 +1,7 @@
 {{#*inline "settingPartial"}}
+{{#if this.isCustom}}
+{{> (lookup this "customPartial") this}}
+{{else}}
 <div class="form-group">
     <label>{{this.name}}</label>
     <div class="form-fields">
@@ -31,6 +34,7 @@
 
     <p class="notes">{{this.hint}}</p>
 </div>
+{{/if}}
 {{/inline}}
 
 {{#*inline "menuPartial" }}
@@ -47,9 +51,9 @@
 
     <!-- Navigation Tabs -->
     <nav class="sheet-tabs tabs" data-group="sections">
-        {{#each data.tabs as |data tab|}} 
+        {{#each data.tabs as |data tab|}}
           <a class="item" data-tab="{{tab}}"><i class="{{data.faIcon}}"></i> {{localize data.tabLabel}} </a>
-        {{/each}} 
+        {{/each}}
     </nav>
 
     <!-- Main Content Section -->
@@ -59,7 +63,7 @@
             <div class="tab-hint">{{ localize data.hint }}</div>
             <div class="settings-list">
               {{#each data.settings}}
-                {{> settingPartial}} 
+                {{> settingPartial}}
               {{/each}}
               {{#each data.menus}}
                 {{> menuPartial}}
