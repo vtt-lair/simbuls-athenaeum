@@ -27,7 +27,7 @@ export class ActionDialog extends Dialog {
         };
         this.data.default = "close";
         this.data.combatants = combatants;
-        mergeObject(this.position, ActionDialog._lastPosition.get(this.options.id) ?? {});
+        foundry.utils.mergeObject(this.position, ActionDialog._lastPosition.get(this.options.id) ?? {});
     }
 
     static DEFAULT_ID = 'simbuls-athenaeum-action-dialog';
@@ -85,8 +85,8 @@ export class ActionDialog extends Dialog {
             let data = {
                 name : item.name, 
                 id : item.id,
-                activation : mergeObject(getProperty(item,'system.activation'), {canUse: true}),
-                description : getProperty(item ,'system.description.value'), 
+                activation : foundry.utils.mergeObject(foundry.utils.getProperty(item,'system.activation'), {canUse: true}),
+                description : foundry.utils.getProperty(item ,'system.description.value'), 
                 img : item.img, 
                 uuid : item.uuid,
             }
@@ -94,7 +94,7 @@ export class ActionDialog extends Dialog {
             /* special case data -- legendary actions REQUIRE available resources */
             switch(type){
             case 'legendary':
-                mergeObject(data.activation, { available : getProperty(combatant.actor, 'system.resources.legact.value') } ); 
+                foundry.utils.mergeObject(data.activation, { available : foundry.utils.getProperty(combatant.actor, 'system.resources.legact.value') } ); 
                 data.activation.canUse = data.activation.available >= data.activation.cost;
                 break;
             }

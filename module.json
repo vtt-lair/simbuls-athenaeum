@@ -19,7 +19,7 @@
     "changelog": "https://github.com/vtt-lair/simbuls-athenaeum/blob/main/CHANGELOG.md",
     "relationships": {},
     "compatibility": {
-        "minimum": "10",
-        "verified": "11"
+        "minimum": "12",
+        "verified": "12"
     }
 }
