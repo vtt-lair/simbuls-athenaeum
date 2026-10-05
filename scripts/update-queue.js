@@ -1,3 +1,5 @@
+import { logger } from './logger.js';
+
 /** 
  * Helper class to manage database updates that occur from
  * hooks that may fire back to back.
