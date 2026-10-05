@@ -3,7 +3,7 @@
     "name": "simbuls-athenaeum",
     "title": "Simbul's Athenaeum",
     "description": "A library for use by other Simbul modules. Useless by it's own.",
-    "version": "1.0.0",
+    "version": "1.3.0",
     "authors": [
       {
         "name": "VTT Lair",
@@ -19,7 +19,7 @@
     "changelog": "https://github.com/vtt-lair/simbuls-athenaeum/blob/main/CHANGELOG.md",
     "relationships": {},
     "compatibility": {
-        "minimum": "12",
-        "verified": "12"
+        "minimum": "14",
+        "verified": "14"
     }
 }

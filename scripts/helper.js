@@ -63,36 +63,23 @@ export class HELPER {
 
     /*
     * Helper function for quickly creating a simple dialog with labeled buttons and associated data. 
-    * Useful for allowing a choice of actors to spawn prior to `warpgate.spawn`.
-    *
-    * @param `data` {Array of Objects}: Contains two keys `label` and `value`. Label corresponds to the 
-    *     button's text. Value corresponds to the return value if this button is pressed. Ex. 
-    *     `const data = buttons: [{label: 'First Choice, value: {token {name: 'First'}}, {label: 'Second Choice',
-    *         value: {token: {name: 'Second}}}]`
-    * @param `direction` {String} (optional): `'column'` or `'row'` accepted. Controls layout direction of dialog.
+    * Migrated to Foundry V14 DialogV2 API.
     */
     static async buttonDialog(data, direction = 'row') {
-        return await new Promise(async (resolve) => {
-            let buttons = {}, dialog;
+        const buttons = data.buttons.map(button => ({
+            action: button.label,
+            label: button.label,
+            callback: () => button.value
+        }));
 
-            data.buttons.forEach((button) => {
-                buttons[button.label] = {
-                    label: button.label,
-                    callback: () => resolve(button.value)
-                }
-            });
-
-            dialog = new Dialog({
-                title: data.title,
-                content: data.content,
-                buttons,
-                close: () => resolve("Exit, No Button Click")
-            }, {
-                /*width: '100%',*/ height: '100%' 
-            });
-
-            await dialog._render(true);
-            dialog.element.find('.dialog-buttons').css({'flex-direction': direction});
+        const result = await foundry.applications.api.DialogV2.wait({
+            window: { title: data.title },
+            content: `<div style="display: flex; flex-direction: ${direction}; gap: 5px;">${data.content || ""}</div>`,
+            buttons: buttons,
+            rejectClose: false,
+            close: () => "Exit, No Button Click"
         });
-  }
+
+        return result;
+    }
 }
